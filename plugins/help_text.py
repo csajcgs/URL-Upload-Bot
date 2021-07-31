@@ -46,7 +46,7 @@ def _help(client, message):
             client.send_message(
                    chat_id=update.chat.id,
                    text=tr.HELP_USER,
-                   parse_mode="markdown",
+                   parse_mode="html",
                    disable_web_page_preview=True,
                    reply_to_message_id=message.message_id,
                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="⭕️ JOIN OUR CHANNEL ⭕️", url=f"https://t.me/{update_channel}")]])
@@ -55,7 +55,7 @@ def _help(client, message):
             client.send_message(
                    chat_id=update.chat.id,
                    text=tr.HELP_USER,
-                   parse_mode="markdown",
+                   parse_mode="html",
                    disable_web_page_preview=True,
                    reply_to_message_id=message.message_id,
                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="⭕️ JOIN OUR CHANNEL ⭕️", url=f"https://t.me/{update_channel}")]])
