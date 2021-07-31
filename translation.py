@@ -49,7 +49,7 @@ URL | newfilename | username | password"""
 
     NO_VOID_FORMAT_FOUND = "ERROR...\n<b>YouTubeDL</b> said: {}"
 
-    HELP_USER = """It's not that complicated😅
+    HELP_MSG = """It's not that complicated😅
     
 1. Send Me A Tumbnail if required. It'll be saved permanently.💯
 2. If Thumbnail Wasn't Set By You, It'll Be Auto Generated From The File.🥳
