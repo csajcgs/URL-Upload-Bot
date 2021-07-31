@@ -43,20 +43,18 @@ def _help(client, message):
             )
             return
         except Exception:
-            client.send_message(
-                   chat_id=message.chat.id,
-                   text=tr.HELP_USER,
-                   parse_mode="markdown",
-                   disable_web_page_preview=True,
-                   reply_to_message_id=message.message_id,
-                   reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="⭕️ JOIN OUR CHANNEL ⭕️", url=f"https://t.me/{update_channel}")]])
-            ),
+            client.send_message(message.chat.id,
+                text=tr.HELP_USER.format(message.from_user.first_name, message.from_user.id),
+	        disable_web_page_preview=True
+             ),
+        parse_mode="markdown",
+        reply_to_message_id=message.message_id
+        )
             return
-            client.send_message(
-                   chat_id=message.chat.id,
-                   text=tr.HELP_USER,
-                   parse_mode="markdown",
-                   disable_web_page_preview=True,
-                   reply_to_message_id=message.message_id,
-                   reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="⭕️ JOIN OUR CHANNEL ⭕️", url=f"https://t.me/{update_channel}")]])
-            )
+    client.send_message(message.chat.id,
+        text=tr.HELP_USER.format(message.from_user.first_name, message.from_user.id),
+        disable_web_page_preview=True
+        ),
+        parse_mode="markdown",
+        reply_to_message_id=message.message_id
+        )
