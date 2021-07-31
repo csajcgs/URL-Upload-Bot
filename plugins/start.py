@@ -1,11 +1,9 @@
 import os
 import sqlite3
-
 import logging
-logging.basicConfig(level=logging.INFO)
 
 from translation import Translation as tr
-from pyrogram.types.bots_and_keyboards import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from config import Config as C
 from pyrogram import Client, filters
@@ -13,7 +11,7 @@ from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, Usern
 SUPPORT_GROUP = C.SUPPORT_GROUP
 OWNER_USERNAME = C.OWNER_USERNAME
 UPDATES_CHANNEL = C.UPDATES_CHANNEL
-
+logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.incoming & filters.command(["start"]))
 async def start(client, message):
