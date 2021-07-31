@@ -2,20 +2,12 @@ import os
 import sqlite3
 
 import logging
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-import pyrogram
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
+logging.basicConfig(level=logging.INFO)
 
 from translation import Translation as tr
 from pyrogram.types.bots_and_keyboards import InlineKeyboardButton, InlineKeyboardMarkup
 
-if bool(os.environ.get("WEBHOOK", False)):
-    from sample_config import Config
-else:
-    from config import Config as C
+from config import Config as C
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
 SUPPORT_GROUP = C.SUPPORT_GROUP
