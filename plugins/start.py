@@ -61,12 +61,12 @@ async def start(client, message):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(
-                            "Source", url="https://github.com/Kirodewal/URLuploader-With-Hotstar"
-                        ),
-                        InlineKeyboardButton("Project Channel", url="https://t.me/{update_channel}"),
+                        InlineKeyboardButton("Source", url="https://github.com/Kirodewal/URLuploader-With-Hotstar"),
+                        InlineKeyboardButton("Project Channel", url="https://t.me/{update_channel}")
                     ],
-                    [InlineKeyboardButton("Author", url="https://t.me/{owner_username}")],
+                    [
+                        InlineKeyboardButton("Author", url="https://t.me/{owner_username}")
+                    ],
                 ]
             ),
             reply_to_message_id=update.message_id
