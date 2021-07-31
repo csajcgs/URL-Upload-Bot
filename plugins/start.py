@@ -1,19 +1,17 @@
-import os
-import sqlite3
 import logging
-
-from translation import Translation
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+import os
+from translations import Messages as tr
 from config import Config as C
 from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
 SUPPORT_GROUP = C.SUPPORT_GROUP
 OWNER_USERNAME = C.OWNER_USERNAME
 UPDATES_CHANNEL = C.UPDATES_CHANNEL
 logging.basicConfig(level=logging.INFO)
 
-@Client.on_message(filters.incoming & filters.command(["start"]))
-async def start(client, message):
+@Client.on_message(filters.incoming & filters.command(['start']))
+def _start(client, message):
     support_group = SUPPORT_GROUP
     owner_username = OWNER_USERNAME
     update_channel = UPDATES_CHANNEL
@@ -44,9 +42,8 @@ async def start(client, message):
             )
             return
         except Exception:
-        client.send_message(
-                chat_id = message.chat.id,
-                text=Translation.START_TEXT.format(message.from_user.first_name, message.from_user.id),
+            client.send_message(message.chat.id,
+                text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
 	        disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
                     [
@@ -59,12 +56,12 @@ async def start(client, message):
                      ]
                  ]
              ),
-        parse_mode="html",
+        parse_mode="markdown",
         reply_to_message_id=message.message_id
         )
             return
     client.send_message(message.chat.id,
-        text=Translation.START_TEXT.format(message.from_user.first_name, message.from_user.id),
+        text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
         disable_web_page_preview=True,
 	reply_markup=InlineKeyboardMarkup(
             [
@@ -77,6 +74,6 @@ async def start(client, message):
                 ]
             ]
         ),
-        parse_mode="html",
+        parse_mode="markdown",
         reply_to_message_id=message.message_id
         )
