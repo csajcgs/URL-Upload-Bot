@@ -16,7 +16,7 @@ if bool(os.environ.get("WEBHOOK", False)):
     from sample_config import Config
 else:
     from config import Config as C
-
+from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
 SUPPORT_GROUP = C.SUPPORT_GROUP
 OWNER_USERNAME = C.OWNER_USERNAME
