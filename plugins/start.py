@@ -15,7 +15,7 @@ from pyrogram.types.bots_and_keyboards import InlineKeyboardButton, InlineKeyboa
 if bool(os.environ.get("WEBHOOK", False)):
     from sample_config import Config
 else:
-    from config import Config
+    from config import Config as C
 
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
 SUPPORT_GROUP = C.SUPPORT_GROUP
@@ -64,9 +64,9 @@ async def start(bot, update):
                         InlineKeyboardButton(
                             "Source", url="https://github.com/Kirodewal/URLuploader-With-Hotstar"
                         ),
-                        InlineKeyboardButton("Project Channel", url="https://t.me/HxBots"),
+                        InlineKeyboardButton("Project Channel", url="https://t.me/{update_channel}"),
                     ],
-                    [InlineKeyboardButton("Author", url="https://t.me/Kirodewal")],
+                    [InlineKeyboardButton("Author", url="https://t.me/{owner_username}")],
                 ]
             ),
             reply_to_message_id=update.message_id
