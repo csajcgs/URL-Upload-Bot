@@ -9,3 +9,7 @@ requests
 tgcrypto
 youtube-dl
 olefile
+asyncio
+psycopg2
+sqlalchemy
+aria2p
