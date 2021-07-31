@@ -1,5 +1,5 @@
 class Translation(object):
-    START_TEXT = """Yo, I am a Powefull URL Upload Bot 🤓!
+    START_MSG = """Yo, I am a Powefull URL Upload Bot 🤓!
 
 I can support Hotstar, Google Drive, and much more Links😌!
 
@@ -10,7 +10,7 @@ Added Permanent Thumbnail Support💯😋!!
 Support Group : @HxSupport
 """
 
-    ABOUT_TEXT = """⭕️<b>My Name : @HxURLuploadBot</b>
+    ABOUT_MSG = """⭕️<b>My Name : @HxURLuploadBot</b>
 
 ⭕️<b>Creater : @Kirodewal</b>
 
