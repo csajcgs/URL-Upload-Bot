@@ -45,16 +45,14 @@ def _help_user(client, message):
         except Exception:
             client.send_message(message.chat.id,
                 text=tr.HELP_USER.format(message.from_user.first_name, message.from_user.id),
-	        disable_web_page_preview=True
-             ),
+	        disable_web_page_preview=True,
         parse_mode="markdown",
         reply_to_message_id=message.message_id
         )
             return
-    client.send_message(message.chat.id,
-        text=tr.HELP_USER.format(message.from_user.first_name, message.from_user.id),
-        disable_web_page_preview=True
-        ),
+            client.send_message(message.chat.id,
+                text=tr.HELP_USER.format(message.from_user.first_name, message.from_user.id),
+                disable_web_page_preview=True,
         parse_mode="markdown",
         reply_to_message_id=message.message_id
         )
