@@ -17,9 +17,44 @@ if bool(os.environ.get("WEBHOOK", False)):
 else:
     from config import Config
 
+from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
+SUPPORT_GROUP = C.SUPPORT_GROUP
+OWNER_USERNAME = C.OWNER_USERNAME
+UPDATES_CHANNEL = C.UPDATES_CHANNEL
+
 
 @pyrogram.Client.on_message(pyrogram.filters.command(["start"]))
 async def start(bot, update):
+    support_group = SUPPORT_GROUP
+    owner_username = OWNER_USERNAME
+    update_channel = UPDATES_CHANNEL
+    if update_channel:
+        try:
+            user = client.get_chat_member(update_channel, message.chat.id)
+            if user.status == "kicked":
+               client.send_message(
+                   chat_id=message.chat.id,
+                   text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/UniversalBotsSupport).",
+                   parse_mode="markdown",
+                   disable_web_page_preview=True
+               )
+               return
+        except UserNotParticipant:
+            client.send_message(
+                chat_id=message.chat.id,
+                text="**Please Join My Updates Channel to use this Bot!**",
+                disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton("Join Updates Channel", url=f"https://t.me/{update_channel}")
+                        ]
+                    ]
+                ),
+                parse_mode="markdown"
+            )
+            return
+        except Exception:
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.START_TEXT.format(update.from_user.first_name),
