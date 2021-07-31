@@ -38,32 +38,3 @@ async def help_user(bot, update):
    )
 
 
-@pyrogram.Client.on_message(pyrogram.filters.command(["start"]))
-async def start(bot, update):
-        await bot.send_message(
-            chat_id=update.chat.id,
-            text=Translation.START_TEXT.format(update.from_user.first_name),
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            "Source", url="https://github.com/Kirodewal/URLuploader-With-Hotstar"
-                        ),
-                        InlineKeyboardButton("Project Channel", url="https://t.me/HxBots"),
-                    ],
-                    [InlineKeyboardButton("Author", url="https://t.me/Kirodewal")],
-                ]
-            ),
-            reply_to_message_id=update.message_id
-        )
-
-
-@pyrogram.Client.on_message(pyrogram.filters.command(["about"]))
-async def help_user(bot, update):
-        await bot.send_message(
-            chat_id=update.chat.id,
-            text=Translation.ABOUT_TEXT,
-        parse_mode="html",
-        reply_to_message_id=update.message_id,
-        disable_web_page_preview=True   
-    ) 
