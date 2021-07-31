@@ -15,8 +15,6 @@ logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.incoming & filters.command(['help']))
 def _help(client, message):
-    support_group = SUPPORT_GROUP
-    owner_username = OWNER_USERNAME
     update_channel = UPDATES_CHANNEL
     if update_channel:
         try:
