@@ -11,6 +11,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 from translation import Translation as tr
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram import Client, filters
 
 from config import Config as C
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
