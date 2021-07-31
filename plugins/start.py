@@ -2,9 +2,8 @@ import os
 import sqlite3
 import logging
 
-from translation import Translation as tr
+from translation import Translation
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
 from config import Config as C
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
@@ -47,7 +46,7 @@ async def start(client, message):
         except Exception:
         client.send_message(
                 chat_id = message.chat.id,
-                text=tr.START_TEXT.format(message.from_user.first_name, message.from_user.id),
+                text=Translation.START_TEXT.format(message.from_user.first_name, message.from_user.id),
 	        disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
                     [
@@ -60,12 +59,12 @@ async def start(client, message):
                      ]
                  ]
              ),
-        parse_mode="markdown",
+        parse_mode="html",
         reply_to_message_id=message.message_id
         )
             return
     client.send_message(message.chat.id,
-        text=tr.START_TEXT.format(message.from_user.first_name, message.from_user.id),
+        text=Translation.START_TEXT.format(message.from_user.first_name, message.from_user.id),
         disable_web_page_preview=True,
 	reply_markup=InlineKeyboardMarkup(
             [
@@ -78,6 +77,6 @@ async def start(client, message):
                 ]
             ]
         ),
-        parse_mode="markdown",
+        parse_mode="html",
         reply_to_message_id=message.message_id
         )
