@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 @Client.on_message(filters.incoming & filters.command(['help']))
-def _help(client, message):
+def _help_user(client, message):
     update_channel = UPDATES_CHANNEL
     if update_channel:
         try:
