@@ -49,7 +49,7 @@ async def _about(client, message):
             return
         except Exception:
             client.send_message(
-                chat_id=update.chat.id,
+                chat_id=message.chat.id,
                 text=Translation.ABOUT_TEXT,
                parse_mode="html",
                reply_to_message_id=update.message_id,
