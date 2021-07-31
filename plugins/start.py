@@ -55,18 +55,38 @@ async def start(client, message):
             )
             return
         except Exception:
-        await client.send_message(chat_id=message.chat.id,
-            text=tr.START_TEXT.format(update.from_user.first_name),
-            reply_markup=InlineKeyboardMarkup(
+        client.send_message(message.chat.id,
+                text=tr.START_TEXT.format(message.from_user.first_name, message.from_user.id),
+	        disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                           InlineKeyboardButton("Join Updates Channel", url=f"https://t.me/{update_channel}"),
+                           InlineKeyboardButton("Support Group", url=f"https://t.me/{support_group}")
+                      ],
+                     [
+                           InlineKeyboardButton("🧑‍💻Devloper🧑‍💻", url=f"https://t.me/{owner_username}")
+                     ]
+                 ]
+             ),
+        parse_mode="markdown",
+        reply_to_message_id=message.message_id
+        )
+            return
+    client.send_message(message.chat.id,
+        text=tr.START_TEXT.format(message.from_user.first_name, message.from_user.id),
+        disable_web_page_preview=True,
+	reply_markup=InlineKeyboardMarkup(
+            [
                 [
-                    [
-                        InlineKeyboardButton("Source", url="https://github.com/Kirodewal/URLuploader-With-Hotstar"),
-                        InlineKeyboardButton("Project Channel", url="https://t.me/{update_channel}")
-                    ],
-                    [
-                        InlineKeyboardButton("Author", url="https://t.me/{owner_username}")
-                    ],
+                    InlineKeyboardButton("Updates Channel", url=f"https://t.me/{update_channel}"),
+                    InlineKeyboardButton("Support Group", url=f"https://t.me/{support_group}")
+                ],
+                [
+                    InlineKeyboardButton("🧑‍💻Devloper🧑‍💻", url=f"https://t.me/{owner_username}")
                 ]
-            ),
-            reply_to_message_id=update.message_id
+            ]
+        ),
+        parse_mode="markdown",
+        reply_to_message_id=message.message_id
         )
