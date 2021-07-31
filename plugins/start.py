@@ -47,7 +47,8 @@ async def start(client, message):
             )
             return
         except Exception:
-        client.send_message(message.chat.id,
+        client.send_message(
+                chat_id = message.chat.id,
                 text=tr.START_TEXT.format(message.from_user.first_name, message.from_user.id),
 	        disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
