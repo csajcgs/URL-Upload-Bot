@@ -23,8 +23,8 @@ OWNER_USERNAME = C.OWNER_USERNAME
 UPDATES_CHANNEL = C.UPDATES_CHANNEL
 
 
-@pyrogram.Client.on_message(pyrogram.filters.command(["start"]))
-async def start(bot, update):
+@Client.on_message(filters.incoming & filters.command(["start"]))
+async def start(client, message):
     support_group = SUPPORT_GROUP
     owner_username = OWNER_USERNAME
     update_channel = UPDATES_CHANNEL
@@ -55,7 +55,7 @@ async def start(bot, update):
             )
             return
         except Exception:
-        await bot.send_message(
+        await client.send_message(
             chat_id=update.chat.id,
             text=Translation.START_TEXT.format(update.from_user.first_name),
             reply_markup=InlineKeyboardMarkup(
