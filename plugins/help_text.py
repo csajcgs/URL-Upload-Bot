@@ -9,8 +9,6 @@ from config import Config as C
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
-SUPPORT_GROUP = C.SUPPORT_GROUP
-OWNER_USERNAME = C.OWNER_USERNAME
 UPDATES_CHANNEL = C.UPDATES_CHANNEL
 logging.basicConfig(level=logging.INFO)
 
@@ -47,13 +45,20 @@ def _help(client, message):
             )
             return
         except Exception:
-        client.send_message(
-            chat_id=update.chat.id,
-            text=tr.HELP_USER,
-            parse_mode="html",
-        disable_web_page_preview=True,
-        reply_to_message_id=update.message_id,
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="⭕️ JOIN OUR CHANNEL ⭕️", url="https://t.me/HxBots")]])
-   )
-
-
+            client.send_message(
+                   chat_id=update.chat.id,
+                   text=tr.HELP_USER,
+                   parse_mode="markdown",
+                   disable_web_page_preview=True,
+                   reply_to_message_id=message.message_id,
+                   reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="⭕️ JOIN OUR CHANNEL ⭕️", url=f"https://t.me/{update_channel}")]])
+            )
+            return
+            client.send_message(
+                   chat_id=update.chat.id,
+                   text=tr.HELP_USER,
+                   parse_mode="markdown",
+                   disable_web_page_preview=True,
+                   reply_to_message_id=message.message_id,
+                   reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="⭕️ JOIN OUR CHANNEL ⭕️", url=f"https://t.me/{update_channel}")]])
+            )
