@@ -1,6 +1,6 @@
 import logging
 import os
-from translation import Translation
+from translation import Translation as tr
 from config import Config as C
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
