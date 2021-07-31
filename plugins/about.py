@@ -19,7 +19,7 @@ UPDATES_CHANNEL = C.UPDATES_CHANNEL
 
 @Client.on_message(filters.incoming & filters.command(['about']))
 async def _about(client, message):
-        update_channel = UPDATES_CHANNEL
+    update_channel = UPDATES_CHANNEL
     if update_channel:
         try:
             user = client.get_chat_member(update_channel, message.chat.id)
