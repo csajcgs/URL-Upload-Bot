@@ -52,6 +52,6 @@ async def _about(client, message):
                 chat_id=message.chat.id,
                 text=tr.ABOUT_MSG,
                parse_mode="html",
-               reply_to_message_id=update.message_id,
+               reply_to_message_id=message.message_id,
                disable_web_page_preview=True   
     ) 
