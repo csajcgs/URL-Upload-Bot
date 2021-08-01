@@ -30,8 +30,8 @@ async def _about(client, message):
                    text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/HxSupport).",
                    parse_mode="markdown",
                    disable_web_page_preview=True
-               )
-               return
+            )
+            return
         except UserNotParticipant:
             client.send_message(
                 chat_id=message.chat.id,
