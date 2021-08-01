@@ -19,9 +19,7 @@ from datetime import datetime
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
-    from sample_config import Config
-else:
-    from config import Config
+from config import Config as C
 
 # the Strings used for this "thing"
 from translation import Translation
@@ -29,6 +27,7 @@ from translation import Translation
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
+from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
@@ -38,6 +37,34 @@ from PIL import Image
 
 async def ddl_call_back(bot, update):
     logger.info(update)
+    update_channel = UPDATES_CHANNEL
+    if update_channel:
+        try:
+            user = client.get_chat_member(update_channel, message.chat.id)
+            if user.status == "kicked":
+               bot.send_message(
+                   chat_id=message.chat.id,
+                   text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/UniversalBotsSupport).",
+                   parse_mode="markdown",
+                   disable_web_page_preview=True
+               )
+               return
+        except UserNotParticipant:
+            bot.send_message(
+                chat_id=message.chat.id,
+                text="**Please Join My Updates Channel to use this Bot!**",
+                disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton("Join Updates Channel", url=f"https://t.me/{update_channel}")
+                        ]
+                    ]
+                ),
+                parse_mode="markdown"
+            )
+            return
+        except Exception:
     cb_data = update.data
     # youtube_dl extractors
     tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("=")
