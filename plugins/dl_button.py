@@ -32,7 +32,6 @@ from PIL import Image
 UPDATES_CHANNEL = C.UPDATES_CHANNEL
 
 async def ddl_call_back(bot, update):
-    logger.info(update)
     update_channel = UPDATES_CHANNEL
     if update_channel:
         try:
@@ -61,6 +60,7 @@ async def ddl_call_back(bot, update):
             )
             return
         except Exception:
+    logger.info(update)
     cb_data = update.data
     # youtube_dl extractors
     tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("=")
