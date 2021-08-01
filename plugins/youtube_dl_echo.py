@@ -38,7 +38,7 @@ UPDATES_CHANNEL = Config.UPDATES_CHANNEL
 async def echo(bot, update, client, message):
         update_channel = UPDATES_CHANNEL
         if update_channel:
-           tWery:
+           try:
                user = client.get_chat_member(update_channel, message.chat.id)
                if user.status == UserNotParticipant:
                   client.send_message(
