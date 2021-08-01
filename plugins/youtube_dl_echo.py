@@ -48,7 +48,7 @@ async def echo(bot, update, client, message):
                       disable_web_page_preview=True
                   )        
                   return
-        except UserNotParticipant:
+        if UserNotParticipant:
                   bot.send_message(
                       chat_id=message.chat.id,
                       text="**Please Join My Updates Channel to use this Bot!**",
