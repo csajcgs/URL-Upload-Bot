@@ -60,16 +60,16 @@ async def ddl_call_back(bot, update):
             )
             return
         except Exception:
-    logger.info(update)
-    cb_data = update.data
+            logger.info(update)
+            cb_data = update.data
     # youtube_dl extractors
-    tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("=")
-    thumb_image_path = Config.DOWNLOAD_LOCATION + \
-        "/" + str(update.from_user.id) + ".jpg"
-    youtube_dl_url = update.message.reply_to_message.text
-    custom_file_name = os.path.basename(youtube_dl_url)
-    if "|" in youtube_dl_url:
-        url_parts = youtube_dl_url.split("|")
+            tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("=")
+            thumb_image_path = Config.DOWNLOAD_LOCATION + \
+            "/" + str(update.from_user.id) + ".jpg"
+            youtube_dl_url = update.message.reply_to_message.text
+            custom_file_name = os.path.basename(youtube_dl_url)
+        if "|" in youtube_dl_url:
+            url_parts = youtube_dl_url.split("|")
         if len(url_parts) == 2:
             youtube_dl_url = url_parts[0]
             custom_file_name = url_parts[1]
@@ -86,26 +86,26 @@ async def ddl_call_back(bot, update):
         if custom_file_name is not None:
             custom_file_name = custom_file_name.strip()
         # https://stackoverflow.com/a/761825/4723940
-        logger.info(youtube_dl_url)
-        logger.info(custom_file_name)
-    else:
+            logger.info(youtube_dl_url)
+            logger.info(custom_file_name)
+        else:
         for entity in update.message.reply_to_message.entities:
-            if entity.type == "text_link":
+        if entity.type == "text_link":
                 youtube_dl_url = entity.url
-            elif entity.type == "url":
+        elif entity.type == "url":
                 o = entity.offset
                 l = entity.length
                 youtube_dl_url = youtube_dl_url[o:o + l]
-    user = await bot.get_me()
-    mention = user["mention"]
-    description = Translation.CUSTOM_CAPTION_UL_FILE.format(mention)
-    start = datetime.now()
-    await bot.edit_message_text(
-        text=Translation.DOWNLOAD_START,
-        chat_id=update.message.chat.id,
-        message_id=update.message.message_id
-    )
-    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id)
+                user = await bot.get_me()
+                mention = user["mention"]
+                description = Translation.CUSTOM_CAPTION_UL_FILE.format(mention)
+                start = datetime.now()
+                await bot.edit_message_text(
+                text=Translation.DOWNLOAD_START,
+                chat_id=update.message.chat.id,
+                message_id=update.message.message_id
+       )
+                tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id)
     if not os.path.isdir(tmp_directory_for_each_user):
         os.makedirs(tmp_directory_for_each_user)
     download_directory = tmp_directory_for_each_user + "/" + custom_file_name
