@@ -35,7 +35,7 @@ from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
 UPDATES_CHANNEL = Config.UPDATES_CHANNEL
 
-@pyrogram.Client.on_message(pyrogram.filters.regex(pattern=".*http.*"))
+@Client.on_message(pyrogram.filters.regex(pattern=".*http.*"))
 async def echo(bot, update, client, message):
         update_channel = UPDATES_CHANNEL
         if update_channel:
