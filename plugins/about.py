@@ -25,7 +25,7 @@ async def _about(client, message):
         try:
             user = client.get_chat_member(update_channel, message.chat.id)
             if user.status == "kicked":
-               client.send_message(
+             await client.send_message(
                    chat_id=message.chat.id,
                    text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/UniversalBotsSupport).",
                    parse_mode="markdown",
@@ -33,7 +33,7 @@ async def _about(client, message):
                )
                return
         except UserNotParticipant:
-            client.send_message(
+          await client.send_message(
                 chat_id=message.chat.id,
                 text="**Please Join My Updates Channel to use this Bot!**",
                 disable_web_page_preview=True,
