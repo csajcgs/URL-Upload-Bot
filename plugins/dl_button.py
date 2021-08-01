@@ -20,12 +20,10 @@ from datetime import datetime
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
 
-# the Strings used for this "thing"
-from translation import Translation
-
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
+from translation import Translation
 from config import Config
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
