@@ -64,13 +64,13 @@ async def echo(bot, update, client, message):
                       parse_mode="markdown"
                   )
                   return
-        except Exception:
-                  logger.info(update.from_user)
-        url = update.text
-        youtube_dl_username = None
-        youtube_dl_password = None
-        file_name = None
-        if "|" in url:
+        else:
+            logger.info(update.from_user)
+            url = update.text
+            youtube_dl_username = None
+            youtube_dl_password = None
+            file_name = None
+            if "|" in url:
             url_parts = url.split("|")
             if len(url_parts) == 2:
                 url = url_parts[0]
