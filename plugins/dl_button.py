@@ -122,46 +122,46 @@ async def ddl_call_back(bot, update):
                 update.message.message_id,
                 c_time
             )
-       except asyncio.TimeOutError:
+        except asyncio.TimeOutError:
             await bot.edit_message_text(
                 text=Translation.SLOW_URL_DECED,
                 chat_id=update.message.chat.id,
                 message_id=update.message.message_id
             )
             return False
-      if os.path.exists(download_directory):
-            end_one = datetime.now()
+        if os.path.exists(download_directory):
+                end_one = datetime.now()
             await bot.edit_message_text(
-            text=Translation.UPLOAD_START,
-            chat_id=update.message.chat.id,
-            message_id=update.message.message_id
-     )
+                text=Translation.UPLOAD_START,
+                chat_id=update.message.chat.id,
+                message_id=update.message.message_id
+            )
             file_size = Config.TG_MAX_FILE_SIZE + 1
-     try:
+        try:
             file_size = os.stat(download_directory).st_size
-     except FileNotFoundError as exc:
+        except FileNotFoundError as exc:
             download_directory = os.path.splitext(download_directory)[0] + "." + "mkv"
             # https://stackoverflow.com/a/678242/4723940
             file_size = os.stat(download_directory).st_size
-     if file_size > Config.TG_MAX_FILE_SIZE:
+        if file_size > Config.TG_MAX_FILE_SIZE:
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
                 text=Translation.RCHD_TG_API_LIMIT,
                 message_id=update.message.message_id
             )
-     else:
+        else:
             # get the correct width, height, and duration for videos greater than 10MB
             # ref: message from @BotSupport
             width = 0
             height = 0
             duration = 0
-     if tg_send_type != "file":
+        if tg_send_type != "file":
                 metadata = extractMetadata(createParser(download_directory))
-     if metadata is not None:
+        if metadata is not None:
                     if metadata.has("duration"):
                         duration = metadata.get('duration').seconds
             # get the correct width, height, and duration for videos greater than 10MB
-     if os.path.exists(thumb_image_path):
+        if os.path.exists(thumb_image_path):
                 width = 0
                 height = 0
                 metadata = extractMetadata(createParser(thumb_image_path))
@@ -185,7 +185,7 @@ async def ddl_call_back(bot, update):
                     img.resize((90, height))
                 img.save(thumb_image_path, "JPEG")
                 # https://pillow.readthedocs.io/en/3.1.x/reference/Image.html#create-thumbnails
-     else:
+        else:
                 thumb_image_path = None
             start_time = time.time()
             # try to upload file
