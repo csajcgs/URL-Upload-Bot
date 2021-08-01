@@ -31,6 +31,9 @@ from helper_funcs.help_uploadbot import DownLoadFile
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import UserNotParticipant, UserBannedInChannel
+from pyrogram import Client, filters
+from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
+UPDATES_CHANNEL = Config.UPDATES_CHANNEL
 
 @pyrogram.Client.on_message(pyrogram.filters.regex(pattern=".*http.*"))
 async def echo(bot, update, client, message):
@@ -41,26 +44,26 @@ async def echo(bot, update, client, message):
                if user.status == "kicked":
                   client.send_message(
                       chat_id=message.chat.id,
-                      text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/UniversalBotsSupport).",
+                      text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/HxSupport).",
                       parse_mode="markdown",
                       disable_web_page_preview=True
-                  )
+                  )        
                   return
         except UserNotParticipant:
-                 client.send_message(
-                   chat_id=message.chat.id,
-                   text="**Please Join My Updates Channel to use this Bot!**",
-                   disable_web_page_preview=True,
-                   reply_markup=InlineKeyboardMarkup(
-                       [
-                           [
-                               InlineKeyboardButton("Join Updates Channel", url=f"https://t.me/{update_channel}")
-                           ]
-                       ]
-                   ),
-                   parse_mode="markdown"
-               )
-               return
+                  client.send_message(
+                      chat_id=message.chat.id,
+                      text="**Please Join My Updates Channel to use this Bot!**",
+                      disable_web_page_preview=True,
+                      reply_markup=InlineKeyboardMarkup(
+                          [
+                              [
+                                  InlineKeyboardButton("Join Updates Channel", url=f"https://t.me/{update_channel}")
+                              ]
+                          ]
+                      ),
+                      parse_mode="markdown"
+                  )
+                  return
         except Exception:
         logger.info(update.from_user)
         url = update.text
