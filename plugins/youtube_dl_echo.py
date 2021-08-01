@@ -65,7 +65,7 @@ async def echo(bot, update, client, message):
                   )
                   return
         except Exception:
-        logger.info(update.from_user)
+                  logger.info(update.from_user)
         url = update.text
         youtube_dl_username = None
         youtube_dl_password = None
