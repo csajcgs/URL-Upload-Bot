@@ -39,7 +39,7 @@ async def echo(bot, update, client, message):
         update_channel = UPDATES_CHANNEL
         if update_channel:
            try:
-               user = bot.get_chat_member(update_channel, message.chat.id)
+               user = client.get_chat_member(update_channel, message.chat.id)
                if user.status == "kicked":
                   client.send_message(
                       chat_id=message.chat.id,
@@ -48,8 +48,8 @@ async def echo(bot, update, client, message):
                       disable_web_page_preview=True
                   )        
                   return
-        if UserNotParticipant:
-                  bot.send_message(
+        except UserNotParticipant:
+                  client.send_message(
                       chat_id=message.chat.id,
                       text="**Please Join My Updates Channel to use this Bot!**",
                       disable_web_page_preview=True,
