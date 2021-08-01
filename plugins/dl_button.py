@@ -90,12 +90,12 @@ async def ddl_call_back(bot, update):
             logger.info(custom_file_name)
         else:
             for entity in update.message.reply_to_message.entities:
-            if entity.type == "text_link":
-                youtube_dl_url = entity.url
-            elif entity.type == "url":
-                o = entity.offset
-                l = entity.length
-                youtube_dl_url = youtube_dl_url[o:o + l]
+                if entity.type == "text_link":
+                   youtube_dl_url = entity.url
+                elif entity.type == "url":
+                   o = entity.offset
+                   l = entity.length
+                   youtube_dl_url = youtube_dl_url[o:o + l]
                 user = await bot.get_me()
                 mention = user["mention"]
                 description = Translation.CUSTOM_CAPTION_UL_FILE.format(mention)
