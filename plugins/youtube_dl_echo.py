@@ -55,7 +55,7 @@ async def echo(bot, update, client, message):
                       parse_mode="markdown"
                   )
                   return
-        else:
+        except Exception:
             logger.info(update.from_user)
             url = update.text
             youtube_dl_username = None
