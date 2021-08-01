@@ -35,7 +35,7 @@ from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, Usern
 UPDATES_CHANNEL = Config.UPDATES_CHANNEL
 
 @Client.on_message(pyrogram.filters.regex(pattern=".*http.*"))
-async def echo(bot, update, client, message):
+async def _echo(bot, update, client, message):
         update_channel = UPDATES_CHANNEL
         if update_channel:
            try:
@@ -54,7 +54,6 @@ async def echo(bot, update, client, message):
                       ),
                       parse_mode="markdown"
                   )
-                  return
         else:
             logger.info(update.from_user)
             url = update.text
