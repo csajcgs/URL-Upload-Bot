@@ -33,7 +33,7 @@ async def _about(client, message):
                )
                return
         except UserNotParticipant:
-          await client.send_message(
+           client.send_message(
                 chat_id=message.chat.id,
                 text="**Please Join My Updates Channel to use this Bot!**",
                 disable_web_page_preview=True,
