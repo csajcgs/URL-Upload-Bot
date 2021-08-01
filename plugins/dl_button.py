@@ -136,13 +136,13 @@ async def ddl_call_back(bot, update):
                 chat_id=update.message.chat.id,
                 message_id=update.message.message_id
             )
-            file_size = Config.TG_MAX_FILE_SIZE + 1
+             file_size = Config.TG_MAX_FILE_SIZE + 1
         try:
-            file_size = os.stat(download_directory).st_size
+             file_size = os.stat(download_directory).st_size
         except FileNotFoundError as exc:
-            download_directory = os.path.splitext(download_directory)[0] + "." + "mkv"
-            # https://stackoverflow.com/a/678242/4723940
-            file_size = os.stat(download_directory).st_size
+             download_directory = os.path.splitext(download_directory)[0] + "." + "mkv"
+             # https://stackoverflow.com/a/678242/4723940
+             file_size = os.stat(download_directory).st_size
         if file_size > Config.TG_MAX_FILE_SIZE:
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
@@ -152,9 +152,9 @@ async def ddl_call_back(bot, update):
         else:
             # get the correct width, height, and duration for videos greater than 10MB
             # ref: message from @BotSupport
-            width = 0
-            height = 0
-            duration = 0
+             width = 0
+             height = 0
+             duration = 0
         if tg_send_type != "file":
                 metadata = extractMetadata(createParser(download_directory))
         if metadata is not None:
