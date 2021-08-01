@@ -17,11 +17,7 @@ import shutil
 import time
 from datetime import datetime
 
-# the secret configuration specific things
-if bool(os.environ.get("WEBHOOK", False)):
 from config import Config as C
-
-# the Strings used for this "thing"
 from translation import Translation
 
 import pyrogram
