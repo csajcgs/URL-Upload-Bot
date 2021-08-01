@@ -27,7 +27,7 @@ async def _about(client, message):
             if user.status == "kicked":
              await client.send_message(
                    chat_id=message.chat.id,
-                   text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/UniversalBotsSupport).",
+                   text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/HxSupport).",
                    parse_mode="markdown",
                    disable_web_page_preview=True
                )
